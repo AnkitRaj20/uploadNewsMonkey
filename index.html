@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NewsMonkey</title>
+    <!-- Remix icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Box icon -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+    </script>
+
+    <style>
+        #wifi-loader {
+            --background: #62abff;
+            --front-color: #4f29f0;
+            --back-color: #c3c8de;
+            --text-color: #414856;
+            width: 64px;
+            height: 64px;
+            border-radius: 50px;
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        #wifi-loader svg {
+            position: absolute;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        #wifi-loader svg circle {
+            position: absolute;
+            fill: none;
+            stroke-width: 6px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            -webkit-transform: rotate(-100deg);
+            -ms-transform: rotate(-100deg);
+            transform: rotate(-100deg);
+            -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+            transform-origin: center;
+        }
+
+        #wifi-loader svg circle.back {
+            stroke: var(--back-color);
+        }
+
+        #wifi-loader svg circle.front {
+            stroke: var(--front-color);
+        }
+
+        #wifi-loader svg.circle-outer {
+            height: 86px;
+            width: 86px;
+        }
+
+        #wifi-loader svg.circle-outer circle {
+            stroke-dasharray: 62.75 188.25;
+        }
+
+        #wifi-loader svg.circle-outer circle.back {
+            -webkit-animation: circle-outer135 1.8s ease infinite 0.3s;
+            animation: circle-outer135 1.8s ease infinite 0.3s;
+        }
+
+        #wifi-loader svg.circle-outer circle.front {
+            -webkit-animation: circle-outer135 1.8s ease infinite 0.15s;
+            animation: circle-outer135 1.8s ease infinite 0.15s;
+        }
+
+        #wifi-loader svg.circle-middle {
+            height: 60px;
+            width: 60px;
+        }
+
+        #wifi-loader svg.circle-middle circle {
+            stroke-dasharray: 42.5 127.5;
+        }
+
+        #wifi-loader svg.circle-middle circle.back {
+            -webkit-animation: circle-middle6123 1.8s ease infinite 0.25s;
+            animation: circle-middle6123 1.8s ease infinite 0.25s;
+        }
+
+        #wifi-loader svg.circle-middle circle.front {
+            -webkit-animation: circle-middle6123 1.8s ease infinite 0.1s;
+            animation: circle-middle6123 1.8s ease infinite 0.1s;
+        }
+
+        #wifi-loader svg.circle-inner {
+            height: 34px;
+            width: 34px;
+        }
+
+        #wifi-loader svg.circle-inner circle {
+            stroke-dasharray: 22 66;
+        }
+
+        #wifi-loader svg.circle-inner circle.back {
+            -webkit-animation: circle-inner162 1.8s ease infinite 0.2s;
+            animation: circle-inner162 1.8s ease infinite 0.2s;
+        }
+
+        #wifi-loader svg.circle-inner circle.front {
+            -webkit-animation: circle-inner162 1.8s ease infinite 0.05s;
+            animation: circle-inner162 1.8s ease infinite 0.05s;
+        }
+
+        #wifi-loader .text {
+            position: absolute;
+            bottom: -40px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            text-transform: lowercase;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        #wifi-loader .text::before,
+        #wifi-loader .text::after {
+            content: attr(data-text);
+        }
+
+        #wifi-loader .text::before {
+            color: var(--text-color);
+        }
+
+        #wifi-loader .text::after {
+            color: var(--front-color);
+            -webkit-animation: text-animation76 3.6s ease infinite;
+            animation: text-animation76 3.6s ease infinite;
+            position: absolute;
+            left: 0;
+        }
+
+        @-webkit-keyframes circle-outer135 {
+            0% {
+                stroke-dashoffset: 25;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 301;
+            }
+
+            80% {
+                stroke-dashoffset: 276;
+            }
+
+            100% {
+                stroke-dashoffset: 276;
+            }
+        }
+
+        @keyframes circle-outer135 {
+            0% {
+                stroke-dashoffset: 25;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 301;
+            }
+
+            80% {
+                stroke-dashoffset: 276;
+            }
+
+            100% {
+                stroke-dashoffset: 276;
+            }
+        }
+
+        @-webkit-keyframes circle-middle6123 {
+            0% {
+                stroke-dashoffset: 17;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 204;
+            }
+
+            80% {
+                stroke-dashoffset: 187;
+            }
+
+            100% {
+                stroke-dashoffset: 187;
+            }
+        }
+
+        @keyframes circle-middle6123 {
+            0% {
+                stroke-dashoffset: 17;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 204;
+            }
+
+            80% {
+                stroke-dashoffset: 187;
+            }
+
+            100% {
+                stroke-dashoffset: 187;
+            }
+        }
+
+        @-webkit-keyframes circle-inner162 {
+            0% {
+                stroke-dashoffset: 9;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 106;
+            }
+
+            80% {
+                stroke-dashoffset: 97;
+            }
+
+            100% {
+                stroke-dashoffset: 97;
+            }
+        }
+
+        @keyframes circle-inner162 {
+            0% {
+                stroke-dashoffset: 9;
+            }
+
+            25% {
+                stroke-dashoffset: 0;
+            }
+
+            65% {
+                stroke-dashoffset: 106;
+            }
+
+            80% {
+                stroke-dashoffset: 97;
+            }
+
+            100% {
+                stroke-dashoffset: 97;
+            }
+        }
+
+        @-webkit-keyframes text-animation76 {
+            0% {
+                -webkit-clip-path: inset(0 100% 0 0);
+                clip-path: inset(0 100% 0 0);
+            }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">NewsMonkey</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/?q=all&pageno=1">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/?q=indian+weather&pageno=1">Weather</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/?q=sports&pageno=1">Sports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/?q=education&pageno=1">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/?q=movies&pageno=1">Movies</a>
+                    </li>
+
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" name="pageno" type="hidden" value="1" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Nav End -->
+
+
+
+    <div class="containers max-auto">
+        <h1 class="text-center m-2">NewsMonkey News - <span id="queryText"></span> (<span id="queryResult"> </span>)</h1>
+        <div id="content" class="row">
+            <div class="d-flex justify-content-center text-center align-items-center">
+                <div id="wifi-loader">
+                    <svg class="circle-outer" viewBox="0 0 86 86">
+                        <circle class="back" cx="43" cy="43" r="40"></circle>
+                        <circle class="front" cx="43" cy="43" r="40"></circle>
+                        <circle class="new" cx="43" cy="43" r="40"></circle>
+                    </svg>
+                    <svg class="circle-middle" viewBox="0 0 60 60">
+                        <circle class="back" cx="30" cy="30" r="27"></circle>
+                        <circle class="front" cx="30" cy="30" r="27"></circle>
+                    </svg>
+                    <svg class="circle-inner" viewBox="0 0 34 34">
+                        <circle class="back" cx="17" cy="17" r="14"></circle>
+                        <circle class="front" cx="17" cy="17" r="14"></circle>
+                    </svg>
+                    <div class="text" data-text="Searching"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prevnext my-4 d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a id="prev" class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" id="first" href="#"></a></li>
+                    <li class="page-item"><a class="page-link" id="second" href="#"></a></li>
+                    <li class="page-item"><a class="page-link" id="third" href="#"></a></li>
+                    <li class="page-item"><a id="next" class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+    <script>
+        console.log("Working");
+
+        let articlesPerPage;
+        let totalPage;
+
+        let query = window.location.search.split("?")[1].split('&')[0].split('=')[1];
+        let pageno = parseInt(window.location.search.split("?")[1].split('&')[1].split('=')[1]);
+        console.log("query",query,pageno);
+        
+        const fetchNews= async(query,pageno) =>{
+            let response =await fetch(`/api?q=${query}&apiKey=bd7e0fd936d44def8d645b83f4e8a352&pageSize=12&page=${pageno}`);
+            let data = await response.json();
+            console.log(data);
+             queryText.innerHTML = query.replace("+"," ");
+             queryResult.innerHTML = data.totalResults+" Results"
+            totalPage = Math.ceil(data.totalResults/articlesPerPage);
+            prev.href = `/?q=${query}&pageno=${pageno-1}`
+            next.href = `/?q=${query}&pageno=${pageno+1}`
+
+            if(pageno==1){
+                first.innerHTML = 1;
+                second.innerHTML = 2;
+                third.innerHTML = 3;
+                first.href = `/?q=${query}&pageno=1`
+            second.href = `/?q=${query}&pageno=2`
+            third.href = `/?q=${query}&pageno=3`
+
+            }
+            else{
+                 first.innerHTML = pageno-1;
+                second.innerHTML = pageno;
+                third.innerHTML = pageno+1;
+                 first.href = `/?q=${query}&pageno=${pageno-1}`
+            second.href = `/?q=${query}&pageno=${pageno}`
+            third.href = `/?q=${query}&pageno=${pageno+1}`
+            }
+
+
+            let str= ""
+
+            for(let items of data.articles){
+            let date = new Date(items.publishedAt).toLocaleDateString();
+                str = str + `
+                   <div class="card m-5" style="width: 18rem;">
+            <img src="${items.urlToImage}" class="card-img-top" alt="${items.title}">
+            <div class="card-body">
+                <h5 class="card-title">${items.title}</h5>
+                <span class="fw-bold">Published At: ${date}</span>
+                <p class="card-text">${items.description}</p>
+                <a target="_blank" href="${items.url}" class="btn btn-primary">Read More</a>
+            </div>
+        </div>
+                `
+            }
+
+            content.innerHTML = str;
+        } 
+
+        fetchNews(query,pageno);
+
+    </script>
+</body>
+
+</html>
