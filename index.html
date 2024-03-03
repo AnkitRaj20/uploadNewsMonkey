@@ -394,7 +394,7 @@
         console.log("query",query,pageno);
         
         const fetchNews= async(query,pageno) =>{
-            let response =await fetch(`/api?q=${query}&apiKey=bd7e0fd936d44def8d645b83f4e8a352&pageSize=12&page=${pageno}`);
+            let response =await fetch(`/api?q=${query}&apiKey=08ed282d524b43388b18077469057335&pageSize=12&page=${pageno}`);
             let data = await response.json();
             console.log(data);
              queryText.innerHTML = query.replace("+"," ");
